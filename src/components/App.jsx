@@ -36,7 +36,7 @@ if(prevState.page !== page || prevState.query !== query) {
 
         if(data.hits.length === 0) {
                   
-          toast.error("Sorry, there are no images matching your search query. Please try again.")
+          toast.warning("Sorry, there are no images matching your search query. Please try again.")
           this.setState({status: Status.REJECTED});
           return;
         }
