@@ -60,8 +60,7 @@ getImages = (title)=> {
 loadMore = ()=> {
   const {page}= this.state;
   this.setState(prevState=> ({page: page+1,})) 
-  window.scrollTo(0, 2000)
-}
+  }
 
   render() {
     const {images, status}= this.state;
