@@ -45,12 +45,12 @@ export class App extends Component {
           status: Status.RESOLVED,
         }));
 
-        setTimeout(() => {
-          window.scrollBy({
-            top: 10000000,
-            behavior: 'smooth',
-          });
-        }, 1500);
+        // setTimeout(() => {
+        //   window.scrollBy({
+        //     top: 10000000,
+        //     behavior: 'smooth',
+        //   });
+        // }, 1500);
       } catch (error) {
         this.setState({ error, status: Status.REJECTED });
         toast.error('Something went wrong :( Try again.');
