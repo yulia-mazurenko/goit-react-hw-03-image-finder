@@ -44,13 +44,6 @@ export class App extends Component {
           images: [...prevState.images, ...images],
           status: Status.RESOLVED,
         }));
-
-        // setTimeout(() => {
-        //   window.scrollBy({
-        //     top: 10000000,
-        //     behavior: 'smooth',
-        //   });
-        // }, 1500);
       } catch (error) {
         this.setState({ error, status: Status.REJECTED });
         toast.error('Something went wrong :( Try again.');
@@ -74,15 +67,6 @@ export class App extends Component {
       return <SearchBar onSubmit={this.getImages} />;
     }
 
-    if (status === Status.PENDING) {
-      return (
-        <>
-          <SearchBar onSubmit={this.getImages} />
-          <Loader />
-        </>
-      );
-    }
-
     if (status === Status.REJECTED) {
       return (
         <>
@@ -92,15 +76,18 @@ export class App extends Component {
       );
     }
 
-    if (status === Status.RESOLVED) {
-      return (
-        <>
-          <SearchBar onSubmit={this.getImages} />
-          <ImageGallery images={images} />
+    return (
+      <>
+        <SearchBar onSubmit={this.getImages} />
+        {status === Status.PENDING && <Loader />}
+
+        <ImageGallery images={images} />
+        {images.length !== 0 && (
           <LoadMoreButton onClick={this.loadMore}>Load More</LoadMoreButton>
-          <ToastContainer autoClose={3000} theme="colored" />
-        </>
-      );
-    }
+        )}
+
+        <ToastContainer autoClose={3000} theme="colored" />
+      </>
+    );
   }
 }
